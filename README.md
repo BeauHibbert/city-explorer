@@ -1,3 +1,3 @@
 # city-explorer
 
-![webrequestresponsecycle.png]
+![Web Request Response Cycle](webrequestresponsecycle.png)
