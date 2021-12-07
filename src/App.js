@@ -9,7 +9,10 @@ constructor(props) {
   }
 }
 
-
+handleSubmit = (e) => {
+  e.preventDefault();
+  this.setState({ queryCity: e.target.city.value })
+}
 
   render() {
     return(
