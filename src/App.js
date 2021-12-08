@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import './App.css';
 export default class App extends Component {
 
 constructor(props) {
@@ -45,16 +46,21 @@ handleSubmit = (e) => {
 
   render() {
     return(
-      <div>
-        <form onSubmit={this.handleSubmit}>
+      <div id="content-wrapper">
+        <form id='form' onSubmit={this.handleSubmit}>
           <input type="text" placeholder="city name" name="city" />
-          <button type="submit">Explore!</button>
+          <button id='button' type="submit">Explore!</button>
         </form>
         <div>
-        {this.state.locationObject.display_name? <p>{this.state.locationObject.display_name}</p> : <p>Search for a city to explore</p>}
-        {this.state.locationObject.lat? <p>Latitude: {this.state.locationObject.lat}</p> : ""}
-        {this.state.locationObject.lon? <p>Longitude: {this.state.locationObject.lon}</p> : ""}
+        <div id="city-data">
+          {this.state.locationObject.display_name? <p>{this.state.locationObject.display_name}</p> : <p>Search for a city to explore</p>}
+          {this.state.locationObject.lat? <p>Latitude: {this.state.locationObject.lat}</p> : ""}
+          {this.state.locationObject.lon? <p>Longitude: {this.state.locationObject.lon}</p> : ""}
+        </div>
+        <div id="image-wrapper">
         {this.state.imageURL? <img src={this.state.imageURL}/> : ""}
+        </div>
+        
         {this.state.error && <p>There was an error with your request</p>}
         </div>
       </div>
