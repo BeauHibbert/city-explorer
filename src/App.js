@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import { Modal } from 'react-bootstrap';
 import './App.css';
 export default class App extends Component {
 
@@ -9,7 +10,8 @@ constructor(props) {
     queryCity: '',
     locationObject: {},
     imageURL: '',
-    error: false
+    error: false,
+    showModal: false,
   }
 }
 
@@ -20,9 +22,9 @@ getLocation = async() => {
       // console.log(result);
       this.setState({ locationObject: result.data[0]}, this.getMap);
   } catch (error) {
-    console.error(error);
-    console.log('there was an error');
-    this.setState({ error: true })
+    console.log(error)
+    this.setState({error: true});
+    this.handleError(error)
   }
 }
 getMap = async() => {
@@ -33,15 +35,35 @@ getMap = async() => {
     this.setState({imageURL: requestURL});
     console.log('mapObject after setting requestURL', this.state.imageURL);
   } catch (error) {
-    console.error(error);
-    console.log('there was an error');
-    this.setState({ error: true })
+    this.setState({error: true});
+    this.handleError(error);
   }
 }
 
 handleSubmit = (e) => {
   e.preventDefault();
   this.setState({ queryCity: e.target.city.value }, this.getLocation);
+}
+
+handleClose = () => {
+  if (this.state.showModal) {
+    this.setState({showModal: false})
+  }
+}
+
+handleError = (err) => {
+  console.log(err)
+  this.setState({showModal: true}, () => {
+    console.log('show modal state', this.state.showModal)
+    return (
+      <Modal show={this.state.showModal} onHide={this.handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Error!</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>{err.message}</Modal.Body>
+        </Modal>
+    )
+  })
 }
 
   render() {
@@ -61,7 +83,7 @@ handleSubmit = (e) => {
         {this.state.imageURL? <img src={this.state.imageURL}/> : ""}
         </div>
         
-        {this.state.error && <p>There was an error with your request</p>}
+        {/* {this.state.error && this.handleError} */}
         </div>
       </div>
     )
