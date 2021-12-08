@@ -17,15 +17,18 @@ constructor(props) {
 
 
 getLocation = async() => {
-  try {
-    let result = await axios.get(`https://us1.locationiq.com/v1/search.php?key=pk.7ce20acb246bf3b79f66fcb7d5ae9d3e&q=${this.state.queryCity}&format=json`);
-      // console.log(result);
-      this.setState({ locationObject: result.data[0]}, this.getMap);
-  } catch (error) {
-    console.log(error)
-    this.setState({error: true});
-    this.handleError(error)
-  }
+  // try {
+    // let result = await axios.get(`https://us1.locationiq.com/v1/search.php?key=pk.7ce20acb246bf3b79f66fcb7d5ae9d3e&q=${this.state.queryCity}&format=json`);
+    let result = await axios.get(`${process.env.REACT_APP_URL}/weather`);
+      // console.log('result', result);
+      // this.setState({ locationObject: result.data[0]}, this.getMap);
+      // this.setState({ locationObject: result.data}, this.getMap);
+      this.setState({ locationObject: result.data});
+  // } catch (error) {
+  //   console.log(error)
+  //   this.setState({error: true});
+  //   this.handleError(error)
+  // }
 }
 getMap = async() => {
   try {
@@ -38,6 +41,10 @@ getMap = async() => {
     this.setState({error: true});
     this.handleError(error);
   }
+}
+
+componentDidMount() {
+  this.getLocation()
 }
 
 handleSubmit = (e) => {
