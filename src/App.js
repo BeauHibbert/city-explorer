@@ -127,22 +127,10 @@ getLocation = async() => {
     this.setState({ error: true })
   }
 }
-// getMap = async() => {
-//   try {
-//     let requestURL = `https://maps.locationiq.com/v3/staticmap?key=pk.7ce20acb246bf3b79f66fcb7d5ae9d3e&center=${this.state.locationObject.lat},${this.state.locationObject.lon}&zoom=11`;
-//     let result = await axios.get(requestURL);
-//     console.log('result of get request: ', result);
-//     this.setState({imageURL: requestURL, error: false});
-//   } catch (error) {
-//     console.error(error);
-//     console.log('there was an error');
-//     this.setState({ error: true })
-//   }
-// }
 
 getWeather = async() => {
-  let city = this.state.locationObject.display_name.split(',')[0];
-  let url = `${process.env.REACT_APP_URL}/weather?city_name=${city}`;
+  // let city = this.state.locationObject.display_name.split(',')[0];
+  let url = `${process.env.REACT_APP_SERVER_URL}/weather?lat=${this.state.locationObject.lat}&lon=${this.state.locationObject.lon}`;
   try {
     let results = await axios.get(url);
   this.setState({weather: results.data, error: false})
