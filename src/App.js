@@ -149,7 +149,7 @@ handleSubmit = (e) => {
           <button id='button' type="submit">Explore!</button>
         </form>
         <div>
-          {this.state.error ? <p>There was an error with your request</p> : <></>}
+          {this.state.error ? <p>There is no data on that city. Please enter another query.</p> : <></>}
         <div id="city-data">
           {this.state.locationObject.display_name ?
           <>
