@@ -109,33 +109,30 @@ constructor(props) {
   this.state = {
     queryCity: '',
     locationObject: {},
-    imageURL: '',
     error: false,
     weather: []
   }
 }
 
-
 getLocation = async() => {
   try {
     let result = await axios.get(`https://us1.locationiq.com/v1/search.php?key=pk.7ce20acb246bf3b79f66fcb7d5ae9d3e&q=${this.state.queryCity}&format=json`);
-      // console.log(result);
-      this.setState({ locationObject: result.data[0], error: false}, this.getWeather);
+    this.setState({ locationObject: result.data[0], error: false}, this.getWeather);
   } catch (error) {
     console.error(error);
-    console.log('there was an error');
     this.setState({ error: true })
   }
 }
 
 getWeather = async() => {
-  // let city = this.state.locationObject.display_name.split(',')[0];
   let url = `${process.env.REACT_APP_SERVER_URL}/weather?lat=${this.state.locationObject.lat}&lon=${this.state.locationObject.lon}`;
   try {
     let results = await axios.get(url);
-  this.setState({weather: results.data, error: false})
-  } catch(error) {
+    this.setState({ weather: results.data })
+    this.setState({ error: false })
+  } catch(e) {
     this.setState({ error: true })
+    this.setState({ weather: [] })
   }
 }
 
@@ -152,6 +149,7 @@ handleSubmit = (e) => {
           <button id='button' type="submit">Explore!</button>
         </form>
         <div>
+          {this.state.error ? <p>There was an error with your request</p> : <></>}
         <div id="city-data">
           {this.state.locationObject.display_name ?
           <>
@@ -159,13 +157,12 @@ handleSubmit = (e) => {
             <Map locationObject={this.state.locationObject}/>
           </>
            :
-           <p>Search for a city to explore</p>}
+           <p>Search for a city to explore</p>
+          }
           {this.state.weather.length > 0 && <Weather weather={this.state.weather}/>}
         </div>
         <div id="image-wrapper">
-        </div>
-        
-        {this.state.error && <p>There was an error with your request</p>}
+        </div>     
         </div>
       </div>
     )
