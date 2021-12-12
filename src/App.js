@@ -3,7 +3,7 @@ import axios from 'axios';
 import Weather from './Weather';
 import './App.css';
 import Map from './Map'
-import Movie from './Movie.js';
+import Movies from './Movies.js';
 
 export default class App extends Component {
 
@@ -71,7 +71,7 @@ handleSubmit = (e) => {
            <p>Search for a city to explore</p>
           }
           {this.state.weather.length > 0 && <Weather weather={this.state.weather}/>}
-          {this.state.movies.length > 0 && this.state.movies.map(movie => <Movie movie={movie} />)}
+          {this.state.movies.length > 0 && <Movies movies={this.state.movies} />}
         </div>
         <div id="image-wrapper">
         </div>     
