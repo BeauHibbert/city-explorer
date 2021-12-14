@@ -5,7 +5,7 @@ export default class Weather extends Component {
   render() {
     return (
       <ul>
-        {this.props.weather.map(day => <WeatherDay key={day.date}data={day}></WeatherDay>)}
+        {this.props.weather.map(day => <WeatherDay key={day.date} data={day}></WeatherDay>)}
       </ul>
     )
   }
