@@ -3,7 +3,7 @@ import axios from 'axios';
 import Weather from './Weather';
 import './App.css';
 import Map from './Map'
-import Movie from './Movie.js';
+import Movies from './Movies.js';
 
 export default class App extends Component {
 
@@ -29,7 +29,7 @@ getLocation = async() => {
 }
 
 getWeather = async() => {
-  let url = `${process.env.REACT_APP_SERVER_URL}/weather?lat=${this.state.locationObject.lat}&lon=${this.state.locationObject.lon}`;
+  let url = `${process.env.REACT_APP_LOCALHOST}/weather?lat=${this.state.locationObject.lat}&lon=${this.state.locationObject.lon}`;
   try {
     let results = await axios.get(url);
     this.setState({ weather: results.data }, this.getMovies)
@@ -42,7 +42,7 @@ getWeather = async() => {
 
 getMovies = async () => {
   const city_name = this.state.locationObject.display_name.split(',')[0];
-  const url = `${process.env.REACT_APP_SERVER_URL}/movies?city_name=${city_name}`
+  const url = `${process.env.REACT_APP_LOCALHOST}/movies?city_name=${city_name}`
   let movieResponse = await axios.get(url);
   this.setState({ movies : movieResponse.data });
 }
@@ -71,7 +71,7 @@ handleSubmit = (e) => {
            <p>Search for a city to explore</p>
           }
           {this.state.weather.length > 0 && <Weather weather={this.state.weather}/>}
-          {this.state.movies.length > 0 && this.state.movies.map(movie => <Movie movie={movie} />)}
+          {this.state.movies.length > 0 && <Movies movies={this.state.movies} />}
         </div>
         <div id="image-wrapper">
         </div>     
