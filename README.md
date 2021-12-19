@@ -1,11 +1,11 @@
 # City Explorer API
 
 **Author**: Beau Hibbert
-**Version**: 1.5.0 (increment the patch/fix version number if you make more commits past your first submission)
+**Version**: 1.11.0 (increment the patch/fix version number if you make more commits past your first submission)
 
 ## Overview
 
-This is a front end application that allows users to search for a city and get back related weather and movie data in order to find out more about the city.
+This is a front end application that allows users to search for a city and get back related weather and movie data in order to find out more information about the city.
 
 ## Getting Started
 
@@ -21,6 +21,7 @@ The project is built using React/Javascript for its frontend, and node/express f
 12/7/21 - Fixes to map rendering and initial error handling added.
 12/8/21 - Added weather component which sends weatherbit data to the client to be rendered out.
 12/9/21 - Render weatherbit data to frontend and handle movie API querying on backend.
+12/18/21 - Finished integrating parts of the labs that needed to be completed.
 
 ## Credit and Collaborations
 
@@ -34,58 +35,59 @@ https://www.themoviedb.org/?language=en-US
 ![Web request response cycle 4](WRRC4.png)
 ![Web request response cycle 5](WRRC5.png)
 
+Note: For each feature listed below, the work took place over multiple days so start and end times are not available. Estimated time took to complete is a very rough estimate as well.
 
 Name of feature: Asynchronous code, and APIs
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 4 hours
 
 Start time: _____
 
 Finish time: _____
 
-Actual time needed to complete: _____
+Actual time needed to complete: 5 hours
 
 
 Name of feature: Custom Servers with Node and Express
 Overview
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 4 hours
 
 Start time: _____
 
 Finish time: _____
 
-Actual time needed to complete: _____
+Actual time needed to complete: 7 hours
 
 
 Name of feature: APIs
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 4 hours
 
 Start time: _____
 
 Finish time: _____
 
-Actual time needed to complete: _____
+Actual time needed to complete: 7 hours
 
 
 Name of feature: Refactoring into Modules
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 4 hours
 
 Start time: _____
 
 Finish time: _____
 
-Actual time needed to complete: _____
+Actual time needed to complete: 6 hours
 
 
 Name of feature: Advanced Topics/Cache
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 4 hours
 
 Start time: _____
 
 Finish time: _____
 
-Actual time needed to complete: _____
+Actual time needed to complete: 6 hours
