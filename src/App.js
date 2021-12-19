@@ -29,7 +29,7 @@ getLocation = async() => {
 }
 
 getWeather = async() => {
-  let url = `${process.env.REACT_APP_LOCALHOST}/weather?lat=${this.state.locationObject.lat}&lon=${this.state.locationObject.lon}`;
+  let url = `${process.env.REACT_APP_SERVER_URL}/weather?lat=${this.state.locationObject.lat}&lon=${this.state.locationObject.lon}`;
   try {
     let results = await axios.get(url);
     this.setState({ weather: results.data }, this.getMovies)
@@ -42,7 +42,7 @@ getWeather = async() => {
 
 getMovies = async () => {
   const city_name = this.state.locationObject.display_name.split(',')[0];
-  const url = `${process.env.REACT_APP_LOCALHOST}/movies?city_name=${city_name}`
+  const url = `${process.env.REACT_APP_SERVER_URL}/movies?city_name=${city_name}`
   let movieResponse = await axios.get(url);
   this.setState({ movies : movieResponse.data });
 }
